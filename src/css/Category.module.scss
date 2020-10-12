@@ -1,0 +1,40 @@
+
+.container {
+  display: flex;
+  padding: 1rem;
+  width: 768px;
+  margin: 0 auto;
+  border-bottom: 1px solid #000;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .item {
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: pre;
+    text-decoration: none;
+    color: inherit;
+    padding-bottom: 0.25rem;
+
+    &:hover {
+      color: #495057;
+    }
+  }
+
+  .active {
+    font-weight: 800;
+    border-bottom: 2px solid #22b8cf;
+    color: #22b8cf;
+    &:hover {
+      color: #3bc9db;
+    }
+  }
+
+}
+
+.item + .item {
+  margin-left: 1.2rem;
+}

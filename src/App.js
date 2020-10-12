@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useCallback, useState} from 'react';
+import NewsList from "./components/NewsList";
+import Category from "./components/Category";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const my_app_key = 'b694cf787f9148ff9c4ade5aaa1b24c0';
+    // const [data, setData] = useState(null);
+    // const onClick = () => {
+    //     axios.get('https://jsonplaceholder.typicode.com/todos/1').then(response => {
+    //         setData(response.data);
+    //     });
+    // };
+
+    // const onClick = async () => {
+    //     try {
+    //         const response = await axios.get(`http://newsapi.org/v2/top-headlines?country=kr&category=entertainment&apiKey=${app_key}`);
+    //         setData(response.data);
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+    // }
+
+    const [category, setCategory] = useState('all');
+    const onSelect = useCallback(c => setCategory(c), []);
+
+    return (
+        <>
+            <Category category={category} onSelect={onSelect} />
+            <NewsList category={category} my_app_key={my_app_key} />
+        </>
+    );
+};
 
 export default App;
