@@ -1,6 +1,7 @@
 import React from 'react';
 import cn from 'classnames/bind';
 import style from '../css/Category.module.scss'
+import { NavLink } from "react-router-dom";
 
 const categories = [
     {
@@ -33,13 +34,21 @@ const categories = [
     },
 ];
 
-const Category = ({ onSelect, category }) => {
+const Category = () => {
     const cx = cn.bind(style);
     return (
         <div className={cx('container')}>
             {categories.map(c =>
                 (
-                <div key={c.name} className={cx('item', category === c.name ? 'active': '')} onClick={() => onSelect(c.name)}>{c.text}</div>
+                <NavLink
+                    key={c.name}
+                    className={cx('item')}
+                    activeClassName={cx('active')}
+                    exact={c.name === 'all'}
+                    to={c.name === 'all' ? '/' : `/${c.name}`}
+                >
+                    {c.text}
+                </NavLink>
                 )
             )}
         </div>
